@@ -56,6 +56,19 @@ class Main extends Component {
         this.setState({ result: 0, operand: "", operator: "", display: 0});
         return true;
       }
+      
+      // change the sign
+      if (btn.val === "+/-") {
+        if (operand) {
+          operand *= -1;
+          this.setState({operand, display: operand});
+        }
+        else if (result) {
+          result *= -1;
+          this.setState({result, display: result});
+        }
+        return true;
+      }
 
       let value = btn.val;
       if (operator) {
@@ -81,14 +94,6 @@ class Main extends Component {
               break;
             case "%":
               result *= operand/100;
-              break;
-            case "+/-":
-              if (operand) {
-                operand *= -1;
-              }
-              else if (result) {
-                result *= -1;
-              }
               break;
             default:
               result = "";
